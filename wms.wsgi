@@ -129,7 +129,7 @@ def application(env, start_response):
 
   # we are in tilemode, lets add the required keys
   if (tilemode):
-    msreq.setParameter("srs","EPSG:900913")
+    msreq.setParameter("srs","EPSG:3857")
     msreq.setParameter("bbox","%f,%f,%f,%f" % TileToBBox(x,y,z))
     msreq.setParameter("width","256")
     msreq.setParameter("height","256")
@@ -158,9 +158,9 @@ def application(env, start_response):
   if wms_disabled == 'true' and not tilemode:
     return SException(start_response,'No WMS available for this layer, try TMS.')
   
-  clayer=map.getLayerByName("copyright")
-  cclass=clayer.getClass(0)
-  cclass.setText(cstring)
+  #clayer=map.getLayerByName("copyright")
+  #cclass=clayer.getClass(0)
+  #cclass.setText(cstring)
   if (REQUEST == "GetCapabilities"):
     map.removeLayer(clayer.index)
   
