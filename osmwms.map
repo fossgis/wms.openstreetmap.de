@@ -47,5 +47,38 @@ MAP
   INCLUDE "gurs/building-outlines.map"
   INCLUDE "gurs/road-lines.map"
 
+  INCLUDE "martin_dornfelder/luftbilder.map"
+
+###################
+# COPYRIGHT LAYER
+###################
+
+  LAYER
+    METADATA
+      "wms_title"   "Copyright Notice"
+      "ows_service" "none"
+    END
+    NAME copyright
+    STATUS DEFAULT
+    TYPE point
+    TRANSFORM ll #set the image origin to be lower left
+      FEATURE
+        POINTS
+        128 -10 #set the offset from lower left position in pixels
+      END
+    END
+    CLASS
+      TEXT "to be set from mapscript"
+      LABEL #defines the font, colors etc. of the text
+        FONT arial-bold
+        TYPE TRUETYPE
+        SIZE 10
+        BUFFER 1
+        COLOR 255 0 0
+        FORCE TRUE
+      END
+    END
+    UNITS PIXELS #sets the units for the feature object
+  END
 
 END
