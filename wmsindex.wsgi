@@ -61,7 +61,7 @@ def application(env, start_response):
     extent = gen4326Extent(layer.metadata.get('wms_extent'),layer.metadata.get('wms_srs'))
     index_html += "<hr />\n"
     index_html += '<table border="0" width="100%">\n'
-    index_html += '<tr><td width="30%%"><b>Name:</b></td><td>%s</td></tr>' % layer.name
+    index_html += '<tr><td width="30%%"><b>Name:</b></td><td id="%s"><b>%s</b></td></tr>' % (layer.name,layer.name)
     wiki = layer.metadata.get('wiki')
     if wiki is not None:
      index_html += '<tr><td width="30%%"><b>Wiki:</b></td><td><a href="%s">%s</a></td></tr>' % (wiki,wiki)
@@ -70,7 +70,11 @@ def application(env, start_response):
      index_html += '<tr><td width="30%%"><b>Terms of Use:</b></td><td>%s</td></tr>' % layer.metadata.get('-terms-of-use')
     index_html += '<tr><td width="30%%"><b>Content:</b></td><td>%s</td></tr>' % layer.metadata.get('wms_title')
     index_html += '<tr><td width="30%%"><b>Bounding Box:</b></td><td>%s</td></tr>' % extent
-    index_html += '<tr><td width="30%%"><b>TMS URL for JOSM Imagery:</b></td><td><b>tms:%s/%s (zoom %d)</b></td></tr>' % (tmsurl,layer.name,zoom)
+    index_html += '<tr><td width="30%%"><b>TMS URL for JOSM Imagery:</b></td><td><b>tms:%s/%s (zoom %d)</b> ' % (tmsurl,layer.name,zoom)
+    # https://josm.openstreetmap.de/wiki/Help/RemoteControlCommands#imagery
+    index_html += '<a href="http://localhost:8111/imagery?title=%s&type=tms&max_zoom=%s&url=%s/%s/{zoom}/{x}/{y}.png">Add via Remote control</a> ' \
+    % (layer.name,zoom,tmsurl,layer.name)
+    index_html += '</td></tr>'
     if not layer.metadata.get('-wms-disabled'):
      index_html += '<tr><td width="30%%"><b>WMS URL (for JOSM/Merkaartor):</b></td><td>%s?layers=%s&</td></tr>' % (wmsurl,layer.name)
     index_html += '<tr><td width="30%%"><b>Interactive map:</b></td><td><a href="%s/%s">%s/%s</a></td></tr>' % (mapurl,layer.name,mapurl,layer.name)
@@ -81,8 +85,16 @@ def application(env, start_response):
     lat2=float(latlon[3])
     lat=lat1+(lat2-lat1)/2
     lon=lon1+(lon2-lon1)/2
-    index_html += '<tr><td width="30%%"><b>Online Editor URL:</b></td><td><a href="http://www.openstreetmap.org/edit?lat=%f&lon=%f&zoom=%s&tileurl=%s/%s/!/!/!.png">Potlatch %s</a></td></tr>' \
+    index_html += '<tr><td width="30%%"><b>Online Editor URL:</b></td><td>'
+    # https://github.com/openstreetmap/iD/blob/master/API.md
+    # background=custom:https://{switch:a,b,c}.tile.openstreetmap.org/{zoom}/{x}/{y}.png
+    index_html += '<a href="https://www.openstreetmap.org/edit#background=custom:%s/%s/{zoom}/{x}/{y}.png">iD</a> ' \
+    % (tmsurl,layer.name)
+    index_html += '(<a href="https://www.openstreetmap.org/edit#background=custom:%s/%s/{zoom}/{x}/{y}.png&map=%s/%f/%f">center</a>), ' \
+    % (tmsurl,layer.name,zoom,lat,lon)
+    index_html += '<a href="http://www.openstreetmap.org/edit?lat=%f&lon=%f&zoom=%s&tileurl=%s/%s/!/!/!.png">Potlatch %s</a> ' \
     % (lat,lon,zoom,tmsurl,layer.name,layer.name)
+    index_html += '</td></tr>'
     index_html += '</table>\n'
   
   templ = open(footer_template,'r')
@@ -96,4 +108,4 @@ def application(env, start_response):
   return [index_html]
 
 
-                                                 
+

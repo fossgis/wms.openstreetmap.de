@@ -27,13 +27,16 @@ def gen4326Extent(ms_extent,ms_srs):
     lon1,lat1 = pyproj.transform(projlayer,proj4326,x1,y1)
     return "%f %f %f %f" % (lon0,lat0,lon1,lat1)
 
-def genHTML(template,layername,bounds,zoom):
+def genHTML(template,layername,bounds,zoom,attribution):
   templ = open(template,'r')
   tdata = templ.read()
   templ.close()
 
   p = re.compile('%LAYERNAME%')
   tdata = p.sub(layername,tdata)
+
+  p = re.compile('%ATTRIBUTION%')
+  tdata = p.sub(attribution,tdata)
   
   p = re.compile('%BOUNDS%')
   tdata = p.sub(bounds,tdata)
@@ -57,12 +60,14 @@ def application(environ, start_response):
    zoom = layer.metadata.get('zoomlevels')
    if zoom is None:
     zoom = '19'
+
+   attribution = layer.metadata.get('wms_title')
     
-   output=genHTML(template,layername,bounds,zoom)       
+   output=genHTML(template,layername,bounds,zoom,attribution)
 
   response_headers = [('Content-type', 'text/html'),
                       ('Content-Length', str(len(output)))]
                        
   start_response(status, response_headers)
   return [output]
-                                           
+
