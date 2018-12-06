@@ -1,7 +1,7 @@
   LAYER
     NAME "GURS-building-outlines"
     METADATA
-     "wms_title"  "GURS building outlines 2018-01-28"
+     "wms_title"  "GURS building outlines 2018-12-02"
      "wms_extent" "13.3 45.4 16.6 46.9"
      "wms_srs"    "EPSG:4326"
      "copyright"  "CC-BY GURS 2018 - http://egp.gu.gov.si"
@@ -9,7 +9,7 @@
      END
     STATUS ON
     TYPE LINE
-    DATA "gurs/KS_SLO_TLORISI-etrs89/KS_SLO_TLORISI_20180128-etrs89.shp"
+    DATA "gurs/KS_SLO_SHP_G-etrs89/KS_SLO_TLORISI_20181202-etrs89.shp"
     PROJECTION
           "init=epsg:4326"
     END
