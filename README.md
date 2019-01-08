@@ -1,14 +1,10 @@
 # The Mapserver configuration at wms.openstreetmap.de
 
-wms.openstreetmap.de can be accessed via the following URL:
+The layers can be browsed at: http://wms.openstreetmap.de
 
-http://wms.openstreetmap.de/wms
+The WMS service can be accessed via WMS client (QGIS, JOSM...) at: `http://wms.openstreetmap.de/wms`
 
-Tiles are available via:
-
-```
-http://wms.openstreetmap.de/tms/<layername>/<z>/<x>/<y>.png
-```
+Tiles are available via: `http://wms.openstreetmap.de/tms/<layername>/<z>/<x>/<y>.png`
 
 Copyright Watermarks are always added to the requested layers. Requests for
 more thane one layer are denied.
