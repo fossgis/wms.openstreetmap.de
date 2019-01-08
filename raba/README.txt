@@ -1,6 +1,9 @@
 WMS/TMS service for Slovenia Landcover Import - RABA-KGZ
 https://wiki.openstreetmap.org/wiki/Slovenia_Landcover_Import_-_RABA-KGZ
 
+wget http://rkg.gov.si/GERK/documents/RABA_2019_01_03.RAR
+
+
 Reproject (from wgs84) to EPSG4326:
 ogr2ogr -t_srs "EPSG:4326" RABA_20150331_EPSG4326 RABA_20150331_84 -nln RABA_20150331_EPSG4326
 
