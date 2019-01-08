@@ -9,7 +9,7 @@
      END
     STATUS ON
     TYPE LINE
-    DATA "raba/newSplitID_improve1_EPSG4326/newSplitID_improve1_EPSG4326.shp"
+    DATA "/osm/raba/RabaSplitForOSM/newSplitID_improve1_EPSG4326/newSplitID_improve1_EPSG4326.shp"
     PROJECTION
           "init=epsg:4326"
     END
