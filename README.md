@@ -14,7 +14,7 @@ more thane one layer are denied.
 
 The Mapserver is implemented as a python wsgi-script inside the Apache
 server.  It is using methods from umn mapserver (python mapscript). 
-Configuration is done by a map-file which is read by the wsgi-script.
+Configuration is done by a map-file which is read by the wsgi-scripts.
 
 In addition to the script itself tiles are cached using Apache
 `mod_disk_cache`.
@@ -22,8 +22,9 @@ In addition to the script itself tiles are cached using Apache
 
 ### Configuration:
 
-Layers are added using osmwms.map. This is (more or less) an ordinary mapfile
-with the exeption of some metadata fields in layers:
+Layers are created into per-topic `.map` files and included into [osmwms.map](osmwms.map). 
+These are (more or less) an ordinary mapfiles with the [usual mapfile syntax](https://mapserver.org/mapfile/),
+but with some some additional metadata fields in layers:
 
 * "copyright"     - This is used for layer specific copyright messages rendered as watermark.
 * "-wms-disabled" - If true, WMS is disabled for this layer.
