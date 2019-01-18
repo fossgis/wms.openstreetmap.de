@@ -18,9 +18,6 @@
 
 header_template='/osm/wms/templates/index_header.html'
 footer_template='/osm/wms/templates/index_footer.html'
-wmsurl="http://wms.openstreetmap.de/wms"
-tmsurl="http://wms.openstreetmap.de/tms"
-mapurl="http://wms.openstreetmap.de/slippymap"
 # zoomlevel for potlatch URL
 zoom=17
 
@@ -43,9 +40,23 @@ def gen4326Extent(ms_extent,ms_srs):
     return "%f %f %f %f" % (lon0,lat0,lon1,lat1)
 
 def application(env, start_response):
-  status = '200 OK'
-  map = mapscript.mapObj(mapfile)
+  wmsurl="://wms.openstreetmap.de/wms"
+  tmsurl="://wms.openstreetmap.de/tms"
+  mapurl="://wms.openstreetmap.de/slippymap"
 
+  status = '200 OK'
+  
+  port = env.get('SERVER_PORT', '80')
+  if (port == '443'):
+    wmsurl='https'+wmsurl
+    tmsurl='https'+tmsurl
+    mapurl='https'+mapurl
+  else:
+    wmsurl='http'+wmsurl
+    tmsurl='http'+tmsurl
+    mapurl='http'+mapurl
+
+  map = mapscript.mapObj(mapfile)
   templ = open(header_template,'r')
   index_html = templ.read()
   templ.close()

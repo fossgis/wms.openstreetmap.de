@@ -67,8 +67,13 @@ def application(env, start_response):
   content_type = "text/plain"
   response_headers = dict([('Content-type', content_type)])
 
-  url = "http://%s%s" % \
-        (env['SERVER_NAME'],env['REQUEST_URI'])
+  if (env['SERVER_PORT'] == '80'):
+    proto="http"
+  else:
+    proto="https"
+  
+  url = "%s://%s%s" % \
+        (proto,env['SERVER_NAME'],env['REQUEST_URI'])
 
   os.chdir(env['DOCUMENT_ROOT'])
   
