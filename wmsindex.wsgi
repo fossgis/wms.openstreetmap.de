@@ -103,7 +103,7 @@ def application(env, start_response):
     % (tmsurl,layer.name)
     index_html += '(<a href="https://www.openstreetmap.org/edit#background=custom:%s/%s/{zoom}/{x}/{y}.png&map=%s/%f/%f">center</a>), ' \
     % (tmsurl,layer.name,zoom,lat,lon)
-    index_html += '<a href="http://www.openstreetmap.org/edit?lat=%f&lon=%f&zoom=%s&tileurl=%s/%s/!/!/!.png">Potlatch %s</a> ' \
+    index_html += '<a href="https://www.openstreetmap.org/edit?lat=%f&lon=%f&zoom=%s&tileurl=%s/%s/!/!/!.png">Potlatch %s</a> ' \
     % (lat,lon,zoom,tmsurl,layer.name,layer.name)
     index_html += '</td></tr>'
     index_html += '</table>\n'
