@@ -5,7 +5,7 @@
       "wms_extent" "14.185499 51.660378 14.502745 51.858363"
       "wms_srs"    "EPSG:4326"
       "copyright"  "© Holger Neubert: OSM use only"
-    "wiki"       "http://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
+    "wiki"       "https://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
     END
     TYPE RASTER
     STATUS ON
@@ -22,7 +22,7 @@
       "wms_extent" "14.633230 51.920404 14.790094 51.987163"
       "wms_srs"    "EPSG:4326"
       "copyright"  "© Holger Neubert: osm-use only"
-      "wiki"       "http://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
+      "wiki"       "https://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
     END
     TYPE RASTER
     STATUS ON
@@ -38,7 +38,7 @@
       "wms_extent" "13.946011 51.740416 13.957644 51.751561"
       "wms_srs"    "EPSG:4326"
       "copyright"  "© Holger Neubert: osm-use only"
-      "wiki"       "http://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
+      "wiki"       "https://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
     END
     TYPE RASTER
     STATUS ON
@@ -55,7 +55,7 @@
       "wms_extent" "14.616566 51.683360 14.637754 51.698390"
       "wms_srs"    "EPSG:4326"
       "copyright"  "© Holger Neubert: osm-use only"
-      "wiki"       "http://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
+      "wiki"       "https://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
     END
     TYPE RASTER
     STATUS ON
@@ -71,7 +71,7 @@
       "wms_extent" "14.430536 51.096425 14.451835 51.110455"
       "wms_srs"    "EPSG:4326"
       "copyright"  "© Holger Neubert: osm-use only"
-      "wiki"       "http://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
+      "wiki"       "https://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
     END
     TYPE RASTER
     STATUS ON
@@ -87,7 +87,7 @@
       "wms_extent" "8.901518 47.715411 9.065091 47.816186"
       "wms_srs"    "EPSG:4326"
       "copyright"  "© Stadt Radolfzell: OSM use only"
-      "wiki"       "http://wiki.openstreetmap.org/wiki/Luftbilder_Radolfzell"
+      "wiki"       "https://wiki.openstreetmap.org/wiki/Luftbilder_Radolfzell"
       "zoomlevels" "22"
     END
     TYPE RASTER
@@ -104,7 +104,7 @@
       "wms_extent" "13.710956 51.475946 13.771952 51.510783"
       "wms_srs"    "EPSG:4326"
       "copyright"  "© Holger Neubert: osm-use only"
-      "wiki"       "http://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
+      "wiki"       "https://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
     END
     TYPE RASTER
     STATUS ON
@@ -120,7 +120,7 @@
       "wms_extent" "14.334045 51.525423 14.368677 51.548234"
       "wms_srs"    "EPSG:4326"
       "copyright"  "© Holger Neubert: osm-use only"
-      "wiki"       "http://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
+      "wiki"       "https://wiki.openstreetmap.org/wiki/User:MartinDornfelder"
     END
     TYPE RASTER
     STATUS ON
