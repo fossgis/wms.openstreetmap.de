@@ -1,15 +1,16 @@
   LAYER
     NAME "GURS-building-outlines"
     METADATA
-     "wms_title"  "GURS building outlines 2019-01-06"
+     "wms_title"  "GURS building outlines 2020-01-04"
      "wms_extent" "13.3 45.4 16.6 46.9"
      "wms_srs"    "EPSG:4326"
-     "copyright"  "CC-BY GURS 2019 - http://egp.gu.gov.si"
+     "copyright"  "CC-BY GURS 2020 - https://egp.gu.gov.si"
      "wiki"       "https://forum.openstreetmap.org/viewtopic.php?pid=685315#p685315"
      END
     STATUS ON
     TYPE LINE
-    DATA "gurs/KS_SLO_SHP_G-etrs89/KS_SLO_TLORISI_20190106-etrs89.shp"
+    # ogr2ogr -s_srs "EPSG:3794" -t_srs "EPSG:4326" KS_SLO_SHP_G-2020-01-04_EPSG4326 KS_SLO_SHP_G-2020-01-04-d96 -nln KS_SLO_SHP_G-2020-01-04_EPSG4326 -progress
+    DATA "gurs/KS_SLO_SHP_G-2020-01-04_EPSG4326/KS_SLO_SHP_G-2020-01-04_EPSG4326.shp"
     PROJECTION
           "init=epsg:4326"
     END
