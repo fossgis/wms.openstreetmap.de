@@ -1,15 +1,15 @@
   LAYER
     NAME "GURS-road-lines"
     METADATA
-     "wms_title"  "GURS road lines 2019-01-07"
+     "wms_title"  "GURS road lines 2020-01-17"
      "wms_extent" "13.3 45.4 16.6 46.9"
      "wms_srs"    "EPSG:4326"
-     "copyright"  "CC-BY GURS 2019 - http://egp.gu.gov.si"
+     "copyright"  "CC-BY GURS 2020 - https://egp.gu.gov.si"
      "wiki"       "https://forum.openstreetmap.org/viewtopic.php?pid=685315#p685315"
      END
     STATUS ON
     TYPE LINE
-    DATA "gurs/GJI_SLO_SHP_G_1100-etrs89/GJI_SLO_1100_ILL_20190107-etrs89.shp"
+    DATA "gurs/GJI_SLO_SHP_G_1100-2020-01-17_EPSG4326/GJI_SLO_SHP_G_1100-2020-01-17_EPSG4326.shp"
     PROJECTION
           "init=epsg:4326"
     END
