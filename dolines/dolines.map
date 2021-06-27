@@ -1,0 +1,59 @@
+  LAYER
+    NAME "Dolines"
+    #CLASSITEM 'angle'
+    METADATA
+     "wms_title"  "dolines.org 2021-06-09"
+     "wms_extent" "13.3 45.4 16.6 46.9"
+     "wms_srs"    "EPSG:4326"
+     "copyright"  "CC-BY dolines.org 2021"
+     "wiki"       "https://forum.openstreetmap.org/viewtopic.php?id=73003"
+     END
+    STATUS ON
+    TYPE LINE
+    # to prepare data run script KS-to-wms.sh
+    DATA "dolines/doline_statistics/doline_statistics.shp"
+    PROJECTION
+          #"init=epsg:4326"
+          "init=epsg:3794"
+    END
+    CLASS
+      EXPRESSION ([angle] < 18)
+      STYLE
+        #OUTLINEWIDTH 1
+        COLOR 0 0 255
+        ANTIALIAS true
+      END
+    END
+    CLASS
+      EXPRESSION ([angle] >= 18 and [angle] < 36 )
+      STYLE
+        #OUTLINEWIDTH 1
+        COLOR 64 0 191
+        ANTIALIAS true
+      END
+    END
+    CLASS
+      EXPRESSION ([angle] >= 36 and [angle] < 54 )
+      STYLE
+        #OUTLINEWIDTH 1
+        COLOR 128 0 128
+        ANTIALIAS true
+      END
+    END
+    CLASS
+      EXPRESSION ([angle] >= 54 and [angle] < 72 )
+      STYLE
+        #OUTLINEWIDTH 1
+        COLOR 191 0 64
+        ANTIALIAS true
+      END
+    END
+    CLASS
+      EXPRESSION ([angle] > 72)
+      STYLE
+        #OUTLINEWIDTH 1
+        COLOR 255 0 0
+        ANTIALIAS true
+      END
+    END
+  END

@@ -47,6 +47,8 @@ MAP
   INCLUDE "gurs/building-outlines.map"
   INCLUDE "gurs/road-lines.map"
 
+  INCLUDE "dolines/dolines.map"
+
   INCLUDE "martin_dornfelder/luftbilder.map"
 
 ###################
