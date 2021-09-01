@@ -21,14 +21,13 @@ def gen4326Extent(ms_extent,ms_srs):
     return ms_extent
   else:
     x0,y0,x1,y1=eval('['+ms_extent.replace(' ',',')+']')
-    proj4326 = pyproj.Proj(init='epsg:4326')
-    projlayer = pyproj.Proj({'init':ms_srs})
-    lon0,lat0 = pyproj.transform(projlayer,proj4326,x0,y0)
-    lon1,lat1 = pyproj.transform(projlayer,proj4326,x1,y1)
+    t = pyproj.Transformer.from_crs(ms_srs, "epsg:4326", always_xy=True)
+    lon0,lat0 = t.transform(x0,y0)
+    lon1,lat1 = t.transform(x1,y1)
     return "%f %f %f %f" % (lon0,lat0,lon1,lat1)
 
 def genHTML(template,layername,bounds,zoom,attribution):
-  templ = open(template,'r')
+  templ = open(template,'r',encoding='utf8')
   tdata = templ.read()
   templ.close()
 
@@ -51,7 +50,7 @@ def application(environ, start_response):
   map = mapscript.mapObj(mapfile)
   layername=os.path.basename(environ['PATH_INFO'])
   layer=map.getLayerByName(layername)
-  
+
   if layer is None:
    output = ('<html><body>&quot;<b>%s</b>&quot; is not a valid layername!</html></body>' % layername)
   else:
@@ -65,9 +64,13 @@ def application(environ, start_response):
     
    output=genHTML(template,layername,bounds,zoom,attribution)
 
+  boutput=output.encode()
   response_headers = [('Content-type', 'text/html'),
-                      ('Content-Length', str(len(output)))]
+                      ('Content-Length', str(len(boutput)))]
                        
   start_response(status, response_headers)
-  return [output]
+  return [boutput]
 
+if __name__ == '__main__':
+  import wsgiref.handlers
+  wsgiref.handlers.CGIHandler().run(application)

@@ -13,7 +13,7 @@
 # $Id$
 #
 
-debug = 0
+debug = 1
 mapfile="/osm/wms/osmwms.map"
 tcopyright="copyrighted Material: OSM use only"
 
@@ -21,6 +21,7 @@ josmdefaults={'SERVICE': 'WMS', 'VERSION': '1.1.1', 'FORMAT':'image/png', 'REQUE
 
 import os,crypt,mapscript,sys,math,string,cgi
 from time import *
+from urllib.parse import parse_qs
 
 # make our WMS also usable as TMS
 def TileToMeters(tx, ty, zoom):
@@ -52,10 +53,11 @@ def SException(start_response,msg,code=""):
   else:
     xml += '  <ServiceException code=\"' + code +'\">\n  ' + msg
   xml += '\n  </ServiceException>\n</ServiceExceptionReport>\n'
+  bxml=xml.encode()
   status = '200 OK'
-  response_headers = [('Content-type', 'application/vnd.ogc.se_xml'),('Content-Length', str(len(xml)))]
+  response_headers = [('Content-type', 'application/vnd.ogc.se_xml'),('Content-Length', str(len(bxml)))]
   start_response(status, response_headers)
-  return xml
+  return bxml
 
 # "main"
 def application(env, start_response):
@@ -93,7 +95,7 @@ def application(env, start_response):
   
     
   # parse QUERY_STRING
-  query = cgi.parse_qsl(querystr)
+  query = parse_qs(querystr)
   query = dict(query)
   
   msreq = mapscript.OWSRequest()
@@ -113,9 +115,9 @@ def application(env, start_response):
       if ("," in query_layers):
         return SException(start_response,'Multiple Layers are currently unsupported')
     if key != "TILE":
-      msreq.setParameter(key,value)
+      msreq.setParameter(key,value[0])
     else:
-      xyz=value.split(',')
+      xyz=value[0].split(',')
       if (len(xyz) != 3):
         return SException(start_response,'Invalid argument "TILE=%s" in request, must be TILE=x,y,z' % value)
       try:
@@ -148,7 +150,6 @@ def application(env, start_response):
 
   map = mapscript.mapObj(mapfile)
   map.setMetaData("wms_onlineresource",url.split("?")[0])
- 
   try:
     layer=map.getLayerByName(query_layers)
     cstring=layer.metadata.get('copyright')
@@ -171,7 +172,7 @@ def application(env, start_response):
   
   # write a mapfile for debugging purposes
   if (debug):
-    os.umask(022)
+    os.umask(0o022)
     map.save("/tmp/topomap.map")
 
   # write mapserver results to buffer
@@ -179,7 +180,7 @@ def application(env, start_response):
   try:
     res = map.OWSDispatch(msreq)
   except:
-     return SException(start_response,str(sys.exc_info()[1]))
+    return SException(start_response,str(sys.exc_info()[1]))
 
   # adjust content-type
   content_type = mapscript.msIO_stripStdoutBufferContentType()
@@ -187,14 +188,17 @@ def application(env, start_response):
   output=mapscript.msIO_getStdoutBufferBytes()
   
   # set Expire header to 100 days from now
-  expire = strftime('%a, %d %b %Y %H:%M:%S %z',gmtime(time()+3600*24*100))   
+  expire = strftime('%a, %d %b %Y %H:%M:%S %z',gmtime(time()+3600*24*100))
   
   response_headers = [('Content-type', content_type),
                       ('Expires', expire),
                       ('Content-Length', str(len(output)))]
   status = '200 OK'
   start_response(status, response_headers)
-  
-  # write image data to stdout
-  return output
 
+  # write image data to stdout
+  return [output]
+
+if __name__ == '__main__':
+  import wsgiref.handlers
+  wsgiref.handlers.CGIHandler().run(application)

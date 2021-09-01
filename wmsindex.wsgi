@@ -33,10 +33,9 @@ def gen4326Extent(ms_extent,ms_srs):
     return ms_extent
   else:
     x0,y0,x1,y1=eval('['+ms_extent.replace(' ',',')+']')
-    proj4326 = pyproj.Proj(init='epsg:4326')
-    projlayer = pyproj.Proj({'init':ms_srs})
-    lon0,lat0 = pyproj.transform(projlayer,proj4326,x0,y0)
-    lon1,lat1 = pyproj.transform(projlayer,proj4326,x1,y1)
+    t = pyproj.Transformer.from_crs(ms_srs, "epsg:4326", always_xy=True)
+    lon0,lat0 = t.transform(x0,y0)
+    lon1,lat1 = t.transform(x1,y1)
     return "%f %f %f %f" % (lon0,lat0,lon1,lat1)
 
 def application(env, start_response):
@@ -57,7 +56,7 @@ def application(env, start_response):
     mapurl='http'+mapurl
 
   map = mapscript.mapObj(mapfile)
-  templ = open(header_template,'r')
+  templ = open(header_template,'r',encoding='utf8')
   index_html = templ.read()
   templ.close()
   
@@ -108,15 +107,17 @@ def application(env, start_response):
     index_html += '</td></tr>'
     index_html += '</table>\n'
   
-  templ = open(footer_template,'r')
+  templ = open(footer_template,'r',encoding='utf8')
   index_html += templ.read()
   templ.close()
 
+  index_html_utf=index_html.encode('utf8')
   response_headers = [('Content-type', 'text/html'),
-                      ('Content-Length', str(len(index_html)))]
+                      ('Content-Length', str(len(index_html_utf)))]
                        
   start_response(status, response_headers)
-  return [index_html]
+  return [index_html_utf]
 
-
-
+if __name__ == '__main__':
+  import wsgiref.handlers
+  wsgiref.handlers.CGIHandler().run(application)
