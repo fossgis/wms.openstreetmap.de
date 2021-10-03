@@ -1,8 +1,16 @@
 #!/bin/bash
-
 set -e
-unzip -d KS_SLO_SHP_G-2021-03-20_TLORISI_d96 KS_SLO_SHP_G-2021-03-20 *_TLORISI_*
+date
+#unzip -d KS_SLO_SHP_G-2021-03-20_TLORISI_d96 KS_SLO_SHP_G-2021-03-20 *_TLORISI_*
 
-ogr2ogr -s_srs "EPSG:3794" -t_srs "EPSG:4326" KS_SLO_SHP_G-2021-03-20_TLORISI_EPSG4326 KS_SLO_SHP_G-2021-03-20_TLORISI_d96 -nln KS_SLO_SHP_G-2021-03-20_TLORISI_EPSG4326 -progress
+#ogr2ogr -s_srs "EPSG:3794" -t_srs "EPSG:4326" KS_SLO_SHP_G-2021-03-20_TLORISI_EPSG4326 KS_SLO_SHP_G-2021-03-20_TLORISI_d96 -nln KS_SLO_SHP_G-2021-03-20_TLORISI_EPSG4326 -progress
+
+# install to crontab as eg:
+#55 5 * * SAT cd /osm/wms/gurs ; ./KS-to-wms.sh > crontablog.txt 2>&1
+
+ogr2ogr -s_srs "EPSG:3794" -t_srs "EPSG:4326" \
+	KS_SLO_SHP_G_TLORISI_EPSG4326 \
+	/tmp/openaddresses-si/KS_SLO_SHP_G/KS_SLO_TLORISI_????????.shp \
+	-nln KS_SLO_SHP_G_TLORISI_EPSG4326 -progress
 
 

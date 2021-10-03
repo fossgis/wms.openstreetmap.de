@@ -1,7 +1,7 @@
   LAYER
     NAME "GURS-building-outlines"
     METADATA
-     "wms_title"  "GURS building outlines 2021-03-20"
+     "wms_title"  "GURS building outlines 2021"
      "wms_extent" "13.3 45.4 16.6 46.9"
      "wms_srs"    "EPSG:4326"
      "copyright"  "CC-BY GURS 2021 - https://egp.gu.gov.si"
@@ -10,7 +10,7 @@
     STATUS ON
     TYPE LINE
     # to prepare data run script KS-to-wms.sh
-    DATA "gurs/KS_SLO_SHP_G-2021-03-20_TLORISI_EPSG4326/KS_SLO_SHP_G-2021-03-20_TLORISI_EPSG4326.shp"
+    DATA "gurs/KS_SLO_SHP_G_TLORISI_EPSG4326/KS_SLO_SHP_G_TLORISI_EPSG4326.shp"
     PROJECTION
           "init=epsg:4326"
     END
