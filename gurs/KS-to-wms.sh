@@ -11,6 +11,6 @@ date
 ogr2ogr -s_srs "EPSG:3794" -t_srs "EPSG:4326" \
 	KS_SLO_SHP_G_TLORISI_EPSG4326 \
 	/tmp/openaddresses-si/KS_SLO_SHP_G/KS_SLO_TLORISI_????????.shp \
-	-nln KS_SLO_SHP_G_TLORISI_EPSG4326 -progress
+	-nln KS_SLO_SHP_G_TLORISI_EPSG4326 -progress -overwrite
 
 
