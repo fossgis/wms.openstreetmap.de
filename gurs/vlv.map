@@ -1,0 +1,40 @@
+  LAYER
+    NAME "GURS-local-election-units"
+    METADATA
+     "wms_title"  "GURS Local Elections voting units 2021"
+     "wms_extent" "13.3 45.4 16.6 46.9"
+     "wms_srs"    "EPSG:4326"
+     "copyright"  "CC-BY GURS 2021 - https://egp.gu.gov.si"
+     "wiki"       "https://forum.openstreetmap.org/viewtopic.php?id=66162"
+     END
+    STATUS ON
+    TYPE LINE
+    # to prepare data run script VLV-to-wms.sh
+    DATA "gurs/VLV_EPSG4326/VLV_EPSG4326.shp"
+    PROJECTION
+          "init=epsg:4326"
+    END
+
+    # https://www.e-prostor.gov.si/fileadmin/struktura/RPE_struktura.pdf
+    CLASS
+      EXPRESSION ('[ENOTA]' = 'LE')
+      STYLE
+        #OUTLINEWIDTH 1
+        COLOR 255 70 0
+        ANTIALIAS true
+	WIDTH 4
+        #LABEL 
+      END
+    END
+    CLASS
+      EXPRESSION ('[ENOTA]' = 'LV')
+      STYLE
+        #OUTLINEWIDTH 1
+        COLOR 255 140 0
+        ANTIALIAS true
+	WIDTH 2
+        #LABEL 
+      END
+    END
+
+  END

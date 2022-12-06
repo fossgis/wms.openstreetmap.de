@@ -1,0 +1,61 @@
+  LAYER
+    NAME "GURS-country-election-units"
+    METADATA
+     "wms_title"  "GURS Country Elections voting units 2021"
+     "wms_extent" "13.3 45.4 16.6 46.9"
+     "wms_srs"    "EPSG:4326"
+     "copyright"  "CC-BY GURS 2021 - https://egp.gu.gov.si"
+     "wiki"       "https://forum.openstreetmap.org/viewtopic.php?id=66162"
+     END
+    STATUS ON
+    TYPE LINE
+    # to prepare data run script VDV-to-wms.sh
+    DATA "gurs/VDV_EPSG4326/VDV_EPSG4326.shp"
+    PROJECTION
+          "init=epsg:4326"
+    END
+
+    # https://www.e-prostor.gov.si/fileadmin/struktura/RPE_struktura.pdf
+    CLASS
+      EXPRESSION ('[ENOTA]' = 'VE')
+      STYLE
+        #OUTLINEWIDTH 1
+        COLOR 255 0 128
+        ANTIALIAS true
+	WIDTH 6
+        #LABEL 
+      END
+    END
+    CLASS
+      EXPRESSION ('[ENOTA]' = 'VO')
+      MAXSCALEDENOM 150000
+      STYLE
+        #OUTLINEWIDTH 1
+        COLOR 220 0 255
+        ANTIALIAS true
+	WIDTH 3
+        #LABEL 
+      END
+    END
+    CLASS
+      EXPRESSION ('[ENOTA]' = 'VD')
+      MAXSCALEDENOM 50000
+      STYLE
+        #OUTLINEWIDTH 1
+        COLOR 128 0 255
+        ANTIALIAS true
+	WIDTH 1
+        #LABEL 
+      END
+#      LABEL
+#        TEXT "[VDV_UIME]"
+#        COLOR  150 150 150
+#        OUTLINECOLOR 255 255 255
+#        FONT "sans"
+#        SIZE 120
+#        POSITION AUTO
+#        PARTIALS FALSE
+#      END
+    END
+
+  END

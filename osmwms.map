@@ -46,6 +46,8 @@ MAP
 
   INCLUDE "gurs/building-outlines.map"
   INCLUDE "gurs/road-lines.map"
+  INCLUDE "gurs/vlv.map"
+  INCLUDE "gurs/vdv.map"
 
   INCLUDE "dolines/dolines.map"
 
