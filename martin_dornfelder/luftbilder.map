@@ -92,7 +92,7 @@
     END
     TYPE RASTER
     STATUS ON
-    DATA "radolfzell/radolfzell-4326.img"
+    DATA "radolfzell/radolfzell-4326.tif"
     OFFSITE 255 255 255
     PROJECTION
       "init=epsg:4326"

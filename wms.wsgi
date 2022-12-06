@@ -151,7 +151,7 @@ def application(env, start_response):
   map = mapscript.mapObj(mapfile)
   map.setMetaData("wms_onlineresource",url.split("?")[0])
   try:
-    layer=map.getLayerByName(query_layers)
+    layer=map.getLayerByName(query_layers[0])
     cstring=layer.metadata.get('copyright')
   except:
     cstring=tcopyright
