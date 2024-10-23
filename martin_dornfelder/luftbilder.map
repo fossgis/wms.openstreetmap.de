@@ -115,7 +115,7 @@
     END
   END
   LAYER
-    NAME "Schwarze Pumpe"
+    NAME "Schwarze_Pumpe"
     METADATA
       "wms_title"  "Luftbilder Schwarze Pumpe"
       "wms_extent" "14.334045 51.525423 14.368677 51.548234"

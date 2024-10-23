@@ -149,7 +149,8 @@ def application(env, start_response):
         msreq.setParameter(d,josmdefaults[d])
 
   map = mapscript.mapObj(mapfile)
-  map.setMetaData("wms_onlineresource",url.split("?")[0])
+  map.web.metadata.set("wms_onlineresource",url.split("?")[0])
+  map.web.metadata.set("wms_allow_getmap_without_styles","true")
   try:
     layer=map.getLayerByName(query_layers[0])
     cstring=layer.metadata.get('copyright')
@@ -180,7 +181,7 @@ def application(env, start_response):
   try:
     res = map.OWSDispatch(msreq)
   except:
-    return SException(start_response,str(sys.exc_info()[1]))
+    return [SException(start_response,str(sys.exc_info()[1]))]
 
   # adjust content-type
   content_type = mapscript.msIO_stripStdoutBufferContentType()
