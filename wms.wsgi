@@ -19,7 +19,7 @@ tcopyright="copyrighted Material: OSM use only"
 
 josmdefaults={'SERVICE': 'WMS', 'VERSION': '1.1.1', 'FORMAT':'image/png', 'REQUEST':'GetMap'}
 
-import os,crypt,mapscript,sys,math,string,cgi
+import os,mapscript,sys,math,string
 from time import *
 from urllib.parse import parse_qs
 

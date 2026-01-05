@@ -23,7 +23,7 @@ zoom=17
 
 mapfile='/osm/wms/osmwms.map'
 
-import re,cgi,mapscript,os,pyproj
+import re,mapscript,os,pyproj
 
 # this will generate an extent in WGS84 projection
 # regardless of the actual layer projection
